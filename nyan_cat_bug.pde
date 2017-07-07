@@ -18,8 +18,17 @@ ArrayList<Gif> dessertGifs = new ArrayList();
 
 boolean gameOver = false;
 
-ArrayList<CatBug> catBugs = new ArrayList();
-ArrayList<Dessert> desserts = new ArrayList();
+ArrayList<CatBug> catBugs;
+ArrayList<Dessert> desserts;
+
+void setupNewGame() {  
+  initVal = 0;
+  bgPos = 0;
+  score = 0;
+  
+  catBugs = new ArrayList();
+  desserts = new ArrayList();
+}
 
 void setup() 
 {
@@ -27,10 +36,6 @@ void setup()
   size(800, 400);
   smooth();
   noStroke();
-  
-  initVal = 0;
-  bgPos = 0;
-  score = 0;
   
   // load images
   bg = loadImage("nyan-cat-bg.png");
@@ -54,6 +59,8 @@ void setup()
   arrayH = new float[163];
   
   nyanCat = new NyanCat(100);
+  
+  setupNewGame();
 }
 
 void draw()
@@ -152,14 +159,14 @@ boolean key = true;
 void keyPressed() {
   key = true;
   if (gameOver) {
-    setup();
+    setupNewGame();
     gameOver = false;
   }
 };
 void keyReleased() { key = false; };
 void mouseClicked() {
   if (gameOver) {
-    setup();
+    setupNewGame();
     gameOver = false;
   }
 }
